@@ -1,15 +1,15 @@
 {
   "files": {
     "main.css": "/ohjelmakatalogi-demo/static/css/main.df5261c7.css",
-    "main.js": "/ohjelmakatalogi-demo/static/js/main.d252eda3.js",
+    "main.js": "/ohjelmakatalogi-demo/static/js/main.e84cbb8a.js",
     "static/js/787.1e4df5ca.chunk.js": "/ohjelmakatalogi-demo/static/js/787.1e4df5ca.chunk.js",
     "index.html": "/ohjelmakatalogi-demo/index.html",
     "main.df5261c7.css.map": "/ohjelmakatalogi-demo/static/css/main.df5261c7.css.map",
-    "main.d252eda3.js.map": "/ohjelmakatalogi-demo/static/js/main.d252eda3.js.map",
+    "main.e84cbb8a.js.map": "/ohjelmakatalogi-demo/static/js/main.e84cbb8a.js.map",
     "787.1e4df5ca.chunk.js.map": "/ohjelmakatalogi-demo/static/js/787.1e4df5ca.chunk.js.map"
   },
   "entrypoints": [
     "static/css/main.df5261c7.css",
-    "static/js/main.d252eda3.js"
+    "static/js/main.e84cbb8a.js"
   ]
 }
