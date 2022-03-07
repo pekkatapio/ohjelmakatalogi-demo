@@ -1,5 +1,6 @@
 import styles from './Alusta.module.css';
 import icons from './icons.js';
+import config from './config.js';
 
 function Alusta(props) {
 
@@ -9,7 +10,8 @@ function Alusta(props) {
   // Jos ikoni löytyy, niin muodostetaan kuvallinen merkki, muuten tekstillä.
   if (index >= 0) {
     let icon = icons[index];
-    return <Label icon={icon.src} text={icon.title} label={props.label}/>;  
+    console.log(config.basename + icon.src);
+    return <Label icon={config.basename + icon.src} text={icon.title} label={props.label}/>;  
   } else {
     return <Label text={props.alusta} label={props.label} />; 
   }

@@ -3,6 +3,8 @@ import Alusta from './Alusta';
 import styles from './App.module.css';
 import { Router, Link } from '@reach/router';
 import getSlug from 'speakingurl';
+import config from './config.js';
+
 
 function  beautifyJSON(data) {
   let content = data.value;
@@ -66,12 +68,12 @@ function App() {
     return (
       <div className={styles.app}>
         <div className={styles.app_kategoriat}>
-          { kategoriat.map(kategoria => (<div key={kategoria.slug}><Link to={"/ohjelmat/"+kategoria.slug}>{kategoria.nimi} ({kategoria.maara})</Link></div>)) }
+          { kategoriat.map(kategoria => (<div key={kategoria.slug}><Link to={config.basename+"ohjelmat/"+kategoria.slug}>{kategoria.nimi} ({kategoria.maara})</Link></div>)) }
         </div>
         <Router>
           <Ohjelmat data={data} kategoriat={kategoriat} default/>
-          <Ohjelmat data={data} path="ohjelmat/:kategoria" kategoriat={kategoriat} />
-          <Ohjelma data={data} path="ohjelma/:ohjelmaId/:slug" />
+          <Ohjelmat data={data} path={config.basename+"ohjelmat/:kategoria"} kategoriat={kategoriat} />
+          <Ohjelma data={data} path={config.basename+"ohjelma/:ohjelmaId/:slug"} />
         </Router>
       </div>
     )
@@ -101,7 +103,7 @@ function Ohjelmat(props) {
         <div key={item.ID} className={styles.ohjelma}>
           <div className={styles.ohjelma_kuvake_keskitä}>{item.kuvake ? <img width="52" src={item.kuvake} alt="" /> : null}</div>
           <div className={styles.ohjelma_tiedot}>
-            <h2><Link to={'/ohjelma/'+item.ID+'/'+getSlug(item.Title)}>{item.Title}</Link></h2>
+            <h2><Link to={config.basename+'ohjelma/'+item.ID+'/'+getSlug(item.Title)}>{item.Title}</Link></h2>
 
             <div className={styles.ohjelma_lisatiedot}>
               <div>{item.lisenssi}</div>

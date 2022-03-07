@@ -1,18 +1,18 @@
 const icons = [
   { id: 'Linux', 
-    src: '/icons/linux-brands.svg', 
+    src: 'icons/linux-brands.svg', 
     title: 'Linux'
   },
   { id: 'OSX', 
-    src: '/icons/apple-brands.svg', 
+    src: 'icons/apple-brands.svg', 
     title: 'OSX'
   },
   { id: 'web', 
-    src: '/icons/window-maximize-regular.svg', 
+    src: 'icons/window-maximize-regular.svg', 
     title: 'web'
   },
   { id: 'Windows', 
-    src: '/icons/windows-brands.svg', 
+    src: 'icons/windows-brands.svg', 
     title: 'Windows'
   },
   ];
