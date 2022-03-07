@@ -1,0 +1,94 @@
+.app {
+  margin: 2em;
+}
+
+.app_loading, .app_error {
+    display: flex;
+    height: 100vh;
+    justify-content: center;
+    align-items: center;
+}
+
+.app_error {
+    color: red;
+}
+
+.app_kategoriat {
+    background-color: #eee;
+    margin-bottom: 1em;
+    padding: 1em;
+    border-radius: 0.5em;
+}
+
+.app_kategoriat a {
+    text-decoration: none;
+    color: #666;
+}
+
+.app_kategoriat a:hover {
+    color: darkblue;
+}
+
+.alusta {
+    display: flex;
+    align-items: center;
+}
+
+.ohjelma {
+    display: flex;
+    background-color: #ddd;
+    border-radius: 0.5rem;
+    margin-bottom: 0.75rem;
+    padding: 1rem;
+}
+
+.ohjelma h2 {
+    margin: 0;
+    font-size: 130%;
+}
+
+.ohjelma a {
+    text-decoration: none;
+    color: #000;
+}
+
+.ohjelma a:hover {
+    color: #666;
+}
+
+.ohjelma_alusta {
+    margin: 0.8em 0;
+}
+
+.ohjelma_kuvake, .ohjelma_kuvake_keskitä {
+    width: 4rem;
+}
+
+.ohjelma_kuvake_keskitä {
+    align-self: center;
+}
+
+.ohjelma_lisatiedot {
+    display: flex;
+    justify-content: space-between;
+}
+
+.ohjelma_tiedot {
+    display:flex;
+    flex-direction: column;
+    flex: 1;
+}
+
+.ohjelma_kuvaus {
+    margin: 1em 0;
+}
+
+.ohjelma_kuvaus div {
+    margin-bottom: 0.5em;
+}
+
+.ohjelma_muokattu {
+    font-size: 0.8em;
+    color: #999;
+    text-align: right;
+}
