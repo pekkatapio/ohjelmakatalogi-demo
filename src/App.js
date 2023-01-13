@@ -1,4 +1,4 @@
-import {useEffect, useState} from 'react';
+import {useEffect, useState, useRef } from 'react';
 import Alusta from './Alusta';
 import styles from './App.module.css';
 import { Router, Link } from '@reach/router';
@@ -22,7 +22,11 @@ function  beautifyJSON(data) {
     'muokattu': item.Modified 
   }));
   
+  
+
   result = result.sort((a,b) => (a.Title > b.Title ? 1 : -1));
+
+  console.log(JSON.stringify(result));
 
   return result;
 }
@@ -33,6 +37,8 @@ function App() {
   const [isLoaded, setIsLoaded] = useState(false);
   const [data, setData] = useState([]);
   const [kategoriat, setKategoriat] = useState([]);
+  const [search, setSearch] = useState('');
+  const searchRef = useRef(null);
 
   useEffect( () => {
     fetch("https://prod-92.westeurope.logic.azure.com:443/workflows/de77a0fe148f4254b8eaec60f99b216c/triggers/manual/paths/invoke?api-version=2016-10-01&sp=%2Ftriggers%2Fmanual%2Frun&sv=1.0&sig=kU5pkikxOSTVGhq8Khhh1RyA8aon-SZvq9hkmGmpM8Q", { method: 'POST'})
@@ -60,6 +66,14 @@ function App() {
       })
   }, []);
  
+  const suoritaHaku = event => {
+    event.preventDefault();
+    const $inputDOMNode = searchRef.current;
+    if ($inputDOMNode && $inputDOMNode.value) {
+      setSearch($inputDOMNode.value);
+    }
+  }
+
   if (error) {
     return <div className={styles.app_error}>No huppista, nyt kävi hassusti.<br/>Yritä pienen hetkän päästä uudestaan.. <br/><br/>{error.message}</div>
   } else if (!isLoaded) {
@@ -70,9 +84,15 @@ function App() {
         <div className={styles.app_kategoriat}>
           { kategoriat.map(kategoria => (<div key={kategoria.slug}><Link to={config.basename+"ohjelmat/"+kategoria.slug}>{kategoria.nimi} ({kategoria.maara})</Link></div>)) }
         </div>
+        <div className={styles.app_search}>
+          <form onSubmit={suoritaHaku}>
+            <input type='text' ref={searchRef} name='search' placeholder='Syötä hakusana' />
+            <button type='submit'>HAE</button>
+          </form>
+        </div>
         <Router>
-          <Ohjelmat data={data} kategoriat={kategoriat} default/>
-          <Ohjelmat data={data} path={config.basename+"ohjelmat/:kategoria"} kategoriat={kategoriat} />
+          <Ohjelmat data={data} kategoriat={kategoriat} search={search} default/>
+          <Ohjelmat data={data} path={config.basename+"ohjelmat/:kategoria"} kategoriat={kategoriat} search={search} />
           <Ohjelma data={data} path={config.basename+"ohjelma/:ohjelmaId/:slug"} />
         </Router>
       </div>
@@ -86,6 +106,8 @@ function Ohjelmat(props) {
   let list;
   let kategoria = "Tuntematon kategoria";
 
+  let search = props.search.toLowerCase();
+  
   if (props.kategoria) {
     let index = props.kategoriat.findIndex(item => (item.slug === props.kategoria));
     if (index >= 0) {
@@ -94,6 +116,10 @@ function Ohjelmat(props) {
     list = props.data.filter(item => (item.kategoria.includes(kategoria)));
   } else {
     list = props.data;
+  }
+
+  if (search) {
+    list = list.filter(item => (item.Title.toLowerCase().includes(search)));
   }
 
   return (
